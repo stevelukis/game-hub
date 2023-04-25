@@ -18,7 +18,15 @@ const gameService = new APIClient<Game>("/games");
 const useGames = (gameQuery: GameQuery) =>
   useQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: gameService.getAll,
+    queryFn: () =>
+      gameService.getAll({
+        params: {
+          genres: gameQuery.genre?.id,
+          parent_platforms: gameQuery.platform?.id,
+          ordering: gameQuery.sortOrder,
+          search: gameQuery.searchText,
+        },
+      }),
   });
 
 export default useGames;
