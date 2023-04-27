@@ -14,7 +14,7 @@ const GameAttributes = ({ game }: Props) => {
       <DefinitionItem term="Platforms">
         <List>
           {game.parent_platforms.map(({ platform }) => (
-            <ListItem>{platform.name}</ListItem>
+            <ListItem key={platform.id}>{platform.name}</ListItem>
           ))}
         </List>
       </DefinitionItem>
