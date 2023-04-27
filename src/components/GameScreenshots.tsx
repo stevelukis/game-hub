@@ -9,13 +9,13 @@ interface Props {
 const GameScreenshots = ({ slug }: Props) => {
   const { data, isLoading, error } = useScreenshots(slug);
 
-  if (error || !data) throw error;
+  if (error) throw error;
 
   if (isLoading) return <Spinner />;
 
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} gap={3}>
-      {data.results.map((screenshot) => (
+      {data?.results.map((screenshot) => (
         <Image key={screenshot.id} src={screenshot.image} />
       ))}
     </SimpleGrid>
