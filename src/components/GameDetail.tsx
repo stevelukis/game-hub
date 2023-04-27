@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Box, Heading, Spinner } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, Spinner } from "@chakra-ui/react";
 import useGame from "../hooks/useGame";
 import ExpandableText from "./ExpandableText";
 import GameAttributes from "./GameAttributes";
@@ -20,17 +20,29 @@ const GameDetail = () => {
   if (error || !game) throw error;
 
   return (
-    <>
-      <Heading>{game?.name}</Heading>
-      <ExpandableText>{description}</ExpandableText>
-      <GameAttributes game={game} />
-      <Box marginTop={5}>
+    <Grid
+      templateAreas={{
+        base: `"main" "media"`,
+        lg: `"main media"`,
+      }}
+      gap={{
+        base: 5,
+        lg: 0,
+      }}
+      padding={5}
+    >
+      <GridItem area="main">
+        <Heading>{game?.name}</Heading>
+        <ExpandableText>{description}</ExpandableText>
+        <GameAttributes game={game} />
+      </GridItem>
+      <GridItem area="media">
         <GameTrailer slug={game.slug} />
-      </Box>
-      <Box marginTop={5}>
-        <GameScreenshots slug={game.slug} />
-      </Box>
-    </>
+        <Box marginTop={5}>
+          <GameScreenshots slug={game.slug} />
+        </Box>
+      </GridItem>
+    </Grid>
   );
 };
 
