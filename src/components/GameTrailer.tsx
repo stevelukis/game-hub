@@ -1,12 +1,12 @@
 import React from "react";
-import useGameTrailer from "../hooks/useGameTrailer";
+import useTrailer from "../hooks/useTrailer";
 
 interface Props {
   slug: string;
 }
 
 const GameTrailer = ({ slug }: Props) => {
-  const { data: trailers } = useGameTrailer(slug);
+  const { data: trailers } = useTrailer(slug);
 
   if (!trailers) return null;
 

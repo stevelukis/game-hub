@@ -3,7 +3,7 @@ interface Data {
   max: string;
 }
 
-export interface GameTrailer {
+export interface Trailer {
   id: number;
   name: string;
   data: Data;
