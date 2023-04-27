@@ -1,20 +1,22 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { Heading, Text } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { Heading, Spinner, Text } from "@chakra-ui/react";
 import useGame from "../hooks/useGame";
 
 const GameDetail = () => {
   const { slug } = useParams();
+  const { data: game, isLoading, error } = useGame(slug!);
 
-  if (!slug) {
-    return <Navigate to="/" />;
+  if (isLoading) {
+    return <Spinner />;
   }
 
-  const { data } = useGame(slug);
+  if (error || !game) throw error;
+
   return (
     <>
-      <Heading>{data?.name}</Heading>
-      <Text>{data?.description_raw}</Text>
+      <Heading>{game?.name}</Heading>
+      <Text>{game?.description_raw}</Text>
     </>
   );
 };
