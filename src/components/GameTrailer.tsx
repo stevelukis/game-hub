@@ -8,7 +8,7 @@ interface Props {
 const GameTrailer = ({ slug }: Props) => {
   const { data: trailers } = useTrailers(slug);
 
-  if (!trailers) return null;
+  if (!trailers || trailers.results.length === 0) return null;
 
   return <video src={trailers.results[0].data["480"]} controls={true} />;
 };
