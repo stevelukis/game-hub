@@ -1,5 +1,5 @@
 import APIClient from "./api-client";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 
 const gameService = new APIClient<Game>("/games");
 

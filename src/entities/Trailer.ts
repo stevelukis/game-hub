@@ -3,8 +3,10 @@ interface Data {
   max: string;
 }
 
-export interface Trailer {
+interface Trailer {
   id: number;
   name: string;
   data: Data;
 }
+
+export default Trailer;
